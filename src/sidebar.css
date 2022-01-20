@@ -1,0 +1,19 @@
+.episodes-container {
+  width: 100%;
+  background-color: rgb(56, 53, 100);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.my-episode {
+  width: 16rem;
+  height: 13.5rem;
+  margin: 0.2rem;
+  padding: 0.3rem;
+
+  background-color: rgb(110, 130, 185);
+
+  border: 2px solod rgb(0, 0, 0);
+}
