@@ -17,6 +17,31 @@ export default function Navbar() {
 
       //console.log(episodes);
 
+    const fetchEachEpisode =(id)=>{   // 
+      const fetchEachEpisodeResult = episodes.results.filter((episode)=>{
+
+        if(episode.id === id){
+            const episodeURL = episode.url;
+        
+            const result = fetch(episodeURL)
+              .then((res)=> res.json())
+              .then((data)=>{
+                  //console.log(data);
+                  return setEachEpisodeInfo(data);  
+              })
+              return result;
+          }else{
+            return null
+        }
+
+        })
+        
+      return fetchEachEpisodeResult;
+    }
+
+    console.log(eachEpisodeInfo.name);
+    console.log(eachEpisodeInfo.url);
+
     const pagination =()=>{
         console.log("page func")
         if(episodes){
@@ -33,32 +58,6 @@ export default function Navbar() {
             })
         }
     }
-
-    const fetchEachEpisode =(id)=>{
-        const fetchEachEpisodeResult = episodes.results.filter((episode)=>{
-
-            if(episode.id === id){
-
-                const episodeURL = episode.url;
-        
-                  const result = fetch(episodeURL)
-                   .then((res)=> res.json())
-                   .then((data)=>{
-                       //console.log(data);
-                       return setEachEpisodeInfo(data);  
-                   })
-                   return result;
-            }else{
-                return null
-            }
-
-        })
-        
-        return fetchEachEpisodeResult;
-    }
-
-    console.log(eachEpisodeInfo.name);
-    console.log(eachEpisodeInfo.url);
 
   return(
   <div>  
