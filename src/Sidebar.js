@@ -7,40 +7,47 @@ import "./sidebar.css";
 export default function Sidebar() {
 
   const [episodes, setEpisodes] = useState();
-  const [count, setCount] = useState(1);
-  const [pic, setImage] = useState("");
-
-  const [chaId, setChaId] = useState();
+  const [pageURL, setPageURL] = useState("https://rickandmortyapi.com/api/episode");
+  const [charecterItems, setcharecterItems] = useState("");
 
 
   useEffect(() => {
+    fetch(`https://rickandmortyapi.com/api/character`)
+    .then((res)=> res.json())
+    .then((data)=>{
+      setcharecterItems(data);
+    });  
+  }, []);
 
-    fetch(`https://rickandmortyapi.com/api/episode?page=${count}`)
+  //console.log(charecterItems);
+  //console.log(episodes);
+
+  useEffect(() => {
+    console.log("i am clicek - 1");
+
+    fetch(pageURL)
     .then((res)=> res.json())
     .then((data)=>{
       setEpisodes(data.results);
     });
+
+    console.log("i am clicek - 2");
   
-  }, [count]);
+  }, [pageURL]);
 
-  console.log(episodes);
+  const pagination =()=>{
+    if(charecterItems){
+      const URL = charecterItems.info.next;
+      console.log(URL);
+      fetch(URL)
+      .then((res)=> res.json())
+      .then((data)=>{
+        console.log(data.info.next);
+        return setPageURL(data.info.next);  
+      })
+    }
+  }
 
-  // if(episodes){
-  //   episodes.map((episode)=>{
-  //     return setChaId(episode.id)
-  //   })
-  // }
-  
-  // useEffect(() => {
-
-  //   fetch(`https://rickandmortyapi.com/api/character/${chaId}`)
-  //   .then((res)=> res.json())
-  //   .then((data)=>{
-  //     console.log(data.image);
-  //     return setImage(data.image);
-  //   })
-
-  // }, [chaId]);
   
 
   return (
@@ -50,16 +57,15 @@ export default function Sidebar() {
 
     <div className="col-lg-3 col-sm-12 border border-dark">
         <div className="button-container border border-primary">
-           {
-             episodes && (
+           {episodes && (
               
                episodes.map((episode, id)=>{
                  return <Button key={id} className="d-block m-5"> Episode {episode.id} </Button>})
               )
-           }
+            }
 
             <div>
-              <Button onClick={()=>{setCount(count + 1)}} >Next page</Button>
+              <Button onClick={()=>{pagination()}} >Next page</Button>
             </div>         
         </div>
       
@@ -69,16 +75,25 @@ export default function Sidebar() {
       2 of 2
       <div className="episodes-container">
         {
-          episodes && (
-            episodes.map((episode, id)=>{
+          charecterItems.results && (
+            charecterItems.results.map((charecter, id)=>{
               return (
                 
                 <div key={id} className="my-episode">
                 
-                <img src={pic} className="w-50" alt="char-avatar" />
-                  <p>{episode.name}</p>
-                  <p>{episode.air_date}</p>
-                  <p>{episode.episode}</p>
+                  <div className="w-300">
+                  <img src={charecter.image} style={{width: "100%", height: "120px"}} alt="" />
+                  </div>
+                  <div >
+                  
+                    <ul className="list-unstyled w-300 d-flex m-2 justify-content-center my-image-container-list">
+                      <li className="m-2">{charecter.name}</li>
+                      <li className="m-2">{charecter.status}</li>
+                      <li className="m-2">{charecter.gender}</li>
+                      <li className="m-2">{charecter.species}</li>
+                    </ul>
+                  
+                  </div>
                   
                 </div>
 

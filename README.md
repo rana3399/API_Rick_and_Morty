@@ -1,70 +1,119 @@
-# Getting Started with Create React App
+# JavaScript-Module-3
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+In this project you must create your own website for the famous television series Rick and Morty.
 
-## Available Scripts
+![Rick and Morty](images/image4.png)
 
-In the project directory, you can run:
+#### What are the main objectives of this project?
+- Obtain information from third-party API
+- Improve your knowledge of HTML, CSS and JavaScript
+- Learn more about how to integrate APIs and its interaction with the client
+- Improve your skills in obtaining asynchronous information by using Fetch API
+- Structure a web project in a clear and orderly manner
 
-### `npm start`
+### General analysis
+You must create a **website** capable of displaying all the information in the series (**episodes, characters, locations**) in an orderly manner so that you can **navigate through the episodes and characters**.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 1.1. Rick and Morty API
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The third party API that you must use to make the requests is [Rick and Morty](https://rickandmortyapi.com/documentation).
 
-### `npm test`
+The main objective is to show the Rick and Morty episodes and navigate through the information it provides us.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The information that you should obtain from the API of each section is as follows:
 
-### `npm run build`
+#### 1.1.1. Episodes
+In this section you will obtain information about the chapters of Rick and Morty:
+- Name
+- Air date
+- Episode code 
+    - Ex:  “S01E01”
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### 1.1.2. Characters
+In this section you will obtain information about the characters of Rick and Morty:
+- Name
+- Status
+- Species
+- Gender
+- Image
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### 1.1.3. Locations
+In this section you will obtain information about the locations of Rick and Morty:
+- Name
+- Type
+- Dimension
+ 
+*Depending on which part you show the data in, you should get only part of the information shown above.*
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 1.2. Web structure
+The initial information to show in this project will be the chapters, from which you must navigate within each one of them to show all the information related to them.
 
-### `npm run eject`
+The page will consist of three main sections:
+#### 1.2.1. Header
+The header section should show at least the **Project title**
+#### 1.2.2. Sidebar
+The sidebar section should show at least the following information:
+- List of the Rick & Morty episodes of the first API pagination
+- Button that will load the next page of episodes below the previous one
+- The user will be able to scroll in the sidebar to see the entire list of chapters
+#### 1.2.3. Main container
+The section of the main container will be the one that contains the detail of the elements.
+### 1.3. Steps for development Part - 1
+The steps to follow for the development of this project are detailed below:
+#### 1.3.1. Step 1
+To start you will have to create the web structure following the one mentioned above.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Once the web structure has been implemented, in the sidebar you should show an episode list, allowing the user the option to show more episodes through a button located after the last item in the list using the pagination of the API. You have to take into account that the user will be able to scroll in this list if it exceeds the height of the screen.
+ 
+#### 1.3.2. Step 2
+When the user clicks on an item in the episode list, you should display the information of the episode in question in the main container.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Information you must show for the selected episode:
+- Name
+- Air date
+- Episode code 
+    - Ex:  “S01E01”
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+#### 1.3.3. Step 3
+Once the main information of the episode is shown in the main container, you should also show the following information for each of the characters that appear in that episode:
+- Character name
+- Character status
+- Character specie
+- Character image
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+#### Wireframe - Main view
+![](images/image3.png)
 
-## Learn More
+### 1.4. Steps for development Part - 2
+#### 1.4.1. Step 1
+In this first step, if the user clicks on a character, you should show the following information about the character in the main container:
+- Name
+- Status
+- Specie
+- Gender
+- Image
+- Origin name
+    - Ex: Earth (C-137)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### 1.4.2. Step 2
+In this step, you must show in the character view the list of episodes in which this character appears.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Episodes list:
+- Episode name
+- Episode code
 
-### Code Splitting
+If you click on an episode in the list, the information of that episode will be shown in the main container as you have previously implemented.
+#### Wireframe - Character view
+![](images/image1.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+#### 1.4.3. Step 3
+Once the previous step of the characters has been implemented, you must show a button that will load the detailed information of the origin location in the main container:
+- Location name
+- Location type
+- Location dimension
+- Residents list
 
-### Analyzing the Bundle Size
+If you select an item from this list, the detail of the selected character will be shown in the main container (note that the functionality of displaying the character information has already been applied previously)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+#### Wireframe - Location view
+![](images/image2.png)
