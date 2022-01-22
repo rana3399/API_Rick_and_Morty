@@ -1,13 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
 import Header from './Header';
-import Sidebar from './Sidebar';
+import Main from './Main';
 
 function App() {
   return (
     <div className="App">
       <Header />
-      <Sidebar />
+      <Main />
     </div>
   );
 }

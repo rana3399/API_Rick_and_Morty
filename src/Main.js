@@ -1,13 +1,14 @@
 import { useEffect, useState} from "react";
-import Button from "react-bootstrap/esm/Button";
 
-import "./sidebar.css";
+import Navbar from "./Navbar";
+import "./main.css";
+import "./header.css";
 
 
-export default function Sidebar() {
+export default function Main() {
 
-  const [episodes, setEpisodes] = useState();
-  const [pageURL, setPageURL] = useState("https://rickandmortyapi.com/api/episode");
+  
+ 
   const [charecterItems, setcharecterItems] = useState("");
 
 
@@ -22,31 +23,6 @@ export default function Sidebar() {
   //console.log(charecterItems);
   //console.log(episodes);
 
-  useEffect(() => {
-    console.log("i am clicek - 1");
-
-    fetch(pageURL)
-    .then((res)=> res.json())
-    .then((data)=>{
-      setEpisodes(data.results);
-    });
-
-    console.log("i am clicek - 2");
-  
-  }, [pageURL]);
-
-  const pagination =()=>{
-    if(charecterItems){
-      const URL = charecterItems.info.next;
-      console.log(URL);
-      fetch(URL)
-      .then((res)=> res.json())
-      .then((data)=>{
-        console.log(data.info.next);
-        return setPageURL(data.info.next);  
-      })
-    }
-  }
 
   
 
@@ -54,23 +30,10 @@ export default function Sidebar() {
 
 <div className="container-fluid">
   <div className="row">
-
     <div className="col-lg-3 col-sm-12 border border-dark">
-        <div className="button-container border border-primary">
-           {episodes && (
-              
-               episodes.map((episode, id)=>{
-                 return <Button key={id} className="d-block m-5"> Episode {episode.id} </Button>})
-              )
-            }
-
-            <div>
-              <Button onClick={()=>{pagination()}} >Next page</Button>
-            </div>         
-        </div>
-      
+      <Navbar />
     </div>
-    
+
     <div className="col-lg-9 col-sm-12 border border-dark">
       2 of 2
       <div className="episodes-container">
@@ -102,6 +65,7 @@ export default function Sidebar() {
         }
       </div>       
     </div>
+    
   </div>
 </div>
 
