@@ -1,4 +1,3 @@
-import {React, useEffect, useState} from 'react';
 import Button from 'react-bootstrap/esm/Button';
 
 export default function Navbar({episodes, pagination, fetchEachEpisode}) {
@@ -7,13 +6,13 @@ export default function Navbar({episodes, pagination, fetchEachEpisode}) {
   <div>  
       <div className="button-container border border-primary">
         {episodes && (            
-          episodes.results.map((episode, id)=>{
+          episodes.results.map((episode, index)=>{
             return (
               <Button
                 // href={eachEpisodeInfo.url}
-                key={id} 
+                key={index + 1} 
                 className="d-block m-5"
-                onClick={()=>{fetchEachEpisode(id)}}
+                onClick={()=>{fetchEachEpisode(episode.id)}}
                 
                 >Episode {episode.id}
         
