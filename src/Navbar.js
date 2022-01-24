@@ -8,6 +8,7 @@ export default function Navbar({episodes, pagination, fetchEachEpisode}) {
         {episodes && (            
           episodes.results.map((episode, index)=>{
             return (
+              <>
               <Button
                 // href={eachEpisodeInfo.url}
                 key={index + 1} 
@@ -17,6 +18,9 @@ export default function Navbar({episodes, pagination, fetchEachEpisode}) {
                 >Episode {episode.id}
         
               </Button>
+
+              <p>{episode.url}</p>
+              </>
             )                
           })
         )

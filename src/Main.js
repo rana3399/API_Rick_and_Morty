@@ -31,7 +31,7 @@ export default function Main() {
           const result = fetch(episodeURL)
             .then((res)=> res.json())
             .then((data)=>{
-                //console.log(data);
+                console.log(data);
                 return setEachEpisodeInfo(data);  
             })
             return result;
@@ -76,7 +76,9 @@ export default function Main() {
         <div className="col-lg-9 col-sm-12 border border-dark">
           2 of 2
           <Episode
+            episodes={episodes}
             eachEpisodeInfo={eachEpisodeInfo} 
+            
           />
           <Charecters /> 
         </div>      
