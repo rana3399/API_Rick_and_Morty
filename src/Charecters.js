@@ -2,13 +2,10 @@ import {React} from 'react';
 
 export default function Charecters({charecterURLResult}) {
 
-   //const [charecterURLResult, setCharecterURLResult] = useState("")
 
   if(charecterURLResult){
-    return console.log(charecterURLResult);
+    console.log(charecterURLResult);
    }
-
-  
 
    return (
      <div>
@@ -29,4 +26,27 @@ export default function Charecters({charecterURLResult}) {
 
 
   
+
+// return (
+//   <div>
+//     {
+//       charecterURLResult && (
+//        charecterURLResult.map((char) =>{
+//          return (
+//            <div>
+//              <p>{char.name} </p>
+             
+//              <div className="w-300">
+//                <img src={char.image} style={{width: "100%", height: "120px"}} alt="" />
+//              </div>
+
+//            </div>
+//          )
+//        })
+        
+//       )
+
+//     }
+//   </div>
+// )
 

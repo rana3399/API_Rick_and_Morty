@@ -31,7 +31,7 @@ export default function Main() {
           const result = fetch(episodeURL)
             .then((res)=> res.json())
             .then((data)=>{
-                console.log(data);
+                //console.log(data);
                 return setEachEpisodeInfo(data);  
             })
             return result;
@@ -43,10 +43,9 @@ export default function Main() {
     return fetchEachEpisodeResult;
   }
 
-  console.log(eachEpisodeInfo.name);
+  //console.log(eachEpisodeInfo.name);
 
   const pagination =()=>{
-      console.log("page func")
       if(episodes){
    
         const URL = episodes.info.next 
@@ -56,8 +55,7 @@ export default function Main() {
         fetch(URL)
         .then((res)=> res.json())
         .then((data)=>{
-            console.log(data);
-            return setEpisodes(data);  
+          return setEpisodes(data);  
         })
       }
   }
