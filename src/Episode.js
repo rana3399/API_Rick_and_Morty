@@ -3,38 +3,49 @@ import Button from 'react-bootstrap/esm/Button';
 
 import Charecters from './Charecters';
 
-
-
-function Episode({episodes, eachEpisodeInfo}) {
+function Episode( {eachEpisodeInfo} ) {
 
   const [charecterURLResult, setCharecterURLResult] = useState([])
   console.log(eachEpisodeInfo);  
 
-  //console.log(charecterURLResult);  
+ async function callback (){
+    if(eachEpisodeInfo){
+
+      const allFetchedResult = [];
+
+      // eachEpisodeInfo.characters.map(async (char) =>{
+        for (let char of eachEpisodeInfo.characters) {
+    
+          const res = await fetch(char);
   
+          //fetch(char).then(res => res.json())
+          const data = res.json();  // promise 
+          console.log(data);
+  
+          allFetchedResult.push(data);
+       }
+        
+      
 
-function callback (){
-  if(eachEpisodeInfo){
+      const charecterDatas = await Promise.all(allFetchedResult)
+      console.log(charecterDatas);
+      console.log("hi");
+      return setCharecterURLResult(charecterDatas)
+      
+    }
 
-    Promise.all(eachEpisodeInfo.characters.map(async (char) =>{
-      const res = await fetch(char);
-      const data = res;
-      return setCharecterURLResult(data);
-    }))
   }
-}
 
-
-function findUrl (){
- return callback()
-}
+  function findUrl (){
+  return callback()
+  }
 
   
-    return (
-       <div className='w-200 border border-primary'>
-  
+  return (
+    <div className='w-200 border border-primary'>
+
       <h2 className='d-flex m-2 justify-content-center my-image-container-list'>Episode - {eachEpisodeInfo.id}</h2>
-                    
+                  
       <ul className="list-unstyled d-flex m-2 justify-content-center my-image-container-list">
         <li className="m-2">{eachEpisodeInfo.name}</li>
         <li className="m-2">{eachEpisodeInfo.air_date}</li>
@@ -42,14 +53,14 @@ function findUrl (){
 
       </ul>
 
-      <Button onClick={findUrl} > fetch charecters info here and show charImages of relevent Episode </Button>
-      
-      <Charecters charecterURLResult={charecterURLResult} />
-      
-      {/* fetch charecters info here and show charImages of relevent Episode */}
+    <Button onClick={findUrl} > Show char Images/info of relevent Episode </Button>
     
-    </div>
-    );
+    <Charecters charecterURLResult={charecterURLResult} />
+    
+    {/* fetch charecters info here and show charImages of relevent Episode */}
+  
+  </div>
+  );
 }
 
 export default Episode;

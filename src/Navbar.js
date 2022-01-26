@@ -10,7 +10,6 @@ export default function Navbar({episodes, pagination, fetchEachEpisode}) {
             return (
               <>
               <Button
-                // href={eachEpisodeInfo.url}
                 key={index + 1} 
                 className="d-block m-5"
                 onClick={()=>{fetchEachEpisode(episode.id)}}
@@ -18,8 +17,6 @@ export default function Navbar({episodes, pagination, fetchEachEpisode}) {
                 >Episode {episode.id}
         
               </Button>
-
-              <p>{episode.url}</p>
               </>
             )                
           })
