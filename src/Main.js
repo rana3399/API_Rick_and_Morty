@@ -1,10 +1,11 @@
 import {React, useEffect, useState} from 'react';
 
 import Navbar from "./Navbar";
+import Episode from './Episode';
 import Charecters from "./Charecters";
+
 import "./main.css";
 import "./header.css";
-import Episode from './Episode';
 
 
 export default function Main() {
@@ -31,7 +32,7 @@ export default function Main() {
           const result = fetch(episodeURL)
             .then((res)=> res.json())
             .then((data)=>{
-                console.log(data);
+                //console.log(data);
                 return setEachEpisodeInfo(data);  
             })
             return result;
@@ -43,10 +44,9 @@ export default function Main() {
     return fetchEachEpisodeResult;
   }
 
-  console.log(eachEpisodeInfo.name);
+  //console.log(eachEpisodeInfo.name);
 
   const pagination =()=>{
-      console.log("page func")
       if(episodes){
    
         const URL = episodes.info.next 
@@ -56,16 +56,15 @@ export default function Main() {
         fetch(URL)
         .then((res)=> res.json())
         .then((data)=>{
-            console.log(data);
-            return setEpisodes(data);  
+          return setEpisodes(data);
         })
       }
   }
 
   return (
-    <div className="container-fluid">
+    <div className="container-fluid min-vw-100 min-vh-100%">
       <div className="row">
-        <div className="col-lg-3 col-sm-12 border border-dark">
+        <div className="col-lg-2 col-sm-12 border border-dark">
           <Navbar 
             episodes={episodes}
             pagination={pagination}
@@ -73,7 +72,7 @@ export default function Main() {
           />
         </div>
 
-        <div className="col-lg-9 col-sm-12 border border-dark">
+        <div className="col-lg-10 col-sm-12 border border-dark">
           2 of 2
           <Episode
             episodes={episodes}

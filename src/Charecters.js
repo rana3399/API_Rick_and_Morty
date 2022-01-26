@@ -1,32 +1,47 @@
 import {React} from 'react';
+import Button from 'react-bootstrap/esm/Button';
+import Card from 'react-bootstrap/esm/Card';
 
 export default function Charecters({charecterURLResult}) {
 
-   //const [charecterURLResult, setCharecterURLResult] = useState("")
 
   if(charecterURLResult){
-    return console.log(charecterURLResult);
+    console.log(charecterURLResult);
    }
 
-  
-
    return (
-     <div>
-       {
+     <div className='my-card'>
+       { 
          charecterURLResult && (
-           <div>
-             <p>{charecterURLResult.name} </p>
-             <div className="w-300">
-                <img src={charecterURLResult.image} style={{width: "100%", height: "120px"}} alt="" />
-             </div>
-           </div>
+          charecterURLResult.map((charResult)=>{
+            
+          return (
+            <Card className='m-2 p-2 text-center' style={{ width: '15rem', maxHeight: "420px" }}>
+              <Card.Img variant="top" style={{width: "100%", height: "120px"}} src={charResult.image} />
+                <Card.Body>
+                  <Card.Title>{charResult.name}</Card.Title>
+                  <Card.Body className='my-card'>
+
+                  <Card.Text className='mx-2'>
+                  {charResult.status}
+                  </Card.Text>
+                  <Card.Text className='mx-2'>
+                  {charResult.species}
+                  </Card.Text>
+                  <Card.Text className='mx-2'>
+                  {charResult.gender}
+                  </Card.Text>
+                  </Card.Body>
+              
+                  <Button variant="primary">Show Location info</Button>
+                </Card.Body>
+            </Card>
+            )
+          })
          )
    
        }
      </div>
    )
 }
-
-
-  
 

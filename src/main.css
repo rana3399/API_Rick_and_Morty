@@ -17,3 +17,11 @@
 
   border: 2px solod rgb(0, 0, 0);
 }
+
+.my-card {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
