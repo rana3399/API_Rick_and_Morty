@@ -4,7 +4,7 @@ export default function Navbar({episodes, pagination, fetchEachEpisode}) {
 
   return(
   <div>  
-      <div className="button-container border border-primary">
+      <div className="button-container">
         {episodes && (            
           episodes.results.map((episode, index)=>{
             return (

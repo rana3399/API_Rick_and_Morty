@@ -1,15 +1,20 @@
 import React from 'react';
 
-export default function Location() {
+export default function Location({ locationResult }) {
+
+  
+    console.log(locationResult);
+  
     //receive a prop from Charecter.js and show location info.
   return (
-    <div>
-        <ul>
-            <li>name</li>
-            <li>type</li>
-            <li>dimension</li>
-        </ul>
-    </div>
+    <>  
+        <div>
+          <ul>
+            <li>{locationResult.name} </li>
+            <li>{locationResult.dimension}</li>
+          </ul>
+        </div>
+    </>
   )
   
   ;

@@ -44,8 +44,6 @@ export default function Main() {
     return fetchEachEpisodeResult;
   }
 
-  //console.log(eachEpisodeInfo.name);
-
   const pagination =()=>{
       if(episodes){
    
@@ -62,7 +60,7 @@ export default function Main() {
   }
 
   return (
-    <div className="container-fluid min-vw-100 min-vh-100%">
+    <div className="container-fluid w-100 h-100">
       <div className="row">
         <div className="col-lg-2 col-sm-12 border border-dark">
           <Navbar 
@@ -73,13 +71,10 @@ export default function Main() {
         </div>
 
         <div className="col-lg-10 col-sm-12 border border-dark">
-          2 of 2
           <Episode
-            episodes={episodes}
-            eachEpisodeInfo={eachEpisodeInfo} 
-            
+            eachEpisodeInfo={eachEpisodeInfo}          
           />
-          <Charecters /> 
+          <Charecters />
         </div>      
       </div>
     </div>
