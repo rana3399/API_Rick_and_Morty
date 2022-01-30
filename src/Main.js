@@ -47,7 +47,7 @@ export default function Main() {
   const pagination =()=>{
       if(episodes){
    
-        const URL = episodes.info.next 
+        const URL = episodes.info.next
         ? episodes.info.next 
         : "https://rickandmortyapi.com/api/episode";
         
