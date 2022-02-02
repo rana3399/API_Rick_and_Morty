@@ -5,39 +5,14 @@ import Location from './Location';
 
 export default function Charecters({charecterURLResult}) {
 
-  console.log(charecterURLResult);
-
   const [locationResult, setLocationResult] = useState()
 
-  // const fetchLocationResult =()=>{
-
-  //  return console.log("i am fetch - Location");
-    // const url = charecterURLResult.map((char) => {
-    //   console.log(char.location.url);
-    //   return char.location.url
-    // });
-
-    // // return url
-   
-    // const result = fetch(url)
-    // .then((res)=> res.json())
-    // .then((data) =>{
-    //   return data;
-    // })
-
-    // console.log(result);
-    // return setLocationResult(result);
-  // }
-
   const fetchLocationResult =(id)=>{
-
-    console.log("i am fetch - Location2");
-
     const findCharecter = charecterURLResult.filter((char) => {
       return char.id === id
     });
 
-    //console.log(findCharecter.name);
+    console.log(findCharecter);
 
     const locationURL = findCharecter[0].location.url;
     fetch(locationURL)
@@ -45,9 +20,9 @@ export default function Charecters({charecterURLResult}) {
     .then((data) =>{
       console.log(data);
       return setLocationResult(data);
-    })
-    
+    }) 
   }
+
 
   console.log(locationResult);
 
@@ -55,7 +30,7 @@ export default function Charecters({charecterURLResult}) {
     <div className='my-card'>
        { 
          charecterURLResult && (
-          charecterURLResult.map((charResult)=>{
+          charecterURLResult.map((charResult ,index)=>{
             
             return (
             <>
@@ -82,14 +57,18 @@ export default function Charecters({charecterURLResult}) {
               
                   <Button onClick={()=>{fetchLocationResult(charResult.id)}} variant="primary">Show Location info</Button>
                 </Card.Body>
-                  {
-                  locationResult && (<Location locationResult={locationResult} />)
-                  }
+                
+              {locationResult && (              
+                <Location locationResult={locationResult} />
+                )}
 
               </Card>
             </>
               )
-          })
+          }
+
+          
+          )
          )
        }
     </div>

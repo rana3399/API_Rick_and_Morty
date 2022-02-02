@@ -7,6 +7,7 @@ export default function Navbar({episodes, pagination, fetchEachEpisode}) {
 
   useEffect(() => {
     if(episodes){
+      console.log(episodes);
       const size = 10;
       const limitResult = episodes.results.slice(0, size);
       return setEpisodeLimit(limitResult);
@@ -25,7 +26,7 @@ export default function Navbar({episodes, pagination, fetchEachEpisode}) {
             return (
               <>
               <Button
-                key={index + 1} 
+                key={index + 1}
                 className="d-block m-5"
                 onClick={()=>{fetchEachEpisode(episode.id)}}
                 
