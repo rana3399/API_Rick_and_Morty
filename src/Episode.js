@@ -6,7 +6,7 @@ import Charecters from './Charecters';
 function Episode( {eachEpisodeInfo} ) {
 
   const [charecterURLResult, setCharecterURLResult] = useState([])
-  console.log(eachEpisodeInfo);  
+  //console.log(eachEpisodeInfo);  
 
   async function fetchSelectedEpisodeInfo (){
     if(eachEpisodeInfo){
@@ -16,12 +16,12 @@ function Episode( {eachEpisodeInfo} ) {
       for (let URL of eachEpisodeInfo.characters) {
         const res = await fetch(URL);
         const data = res.json();  // promise 
-        console.log(data);
+        //console.log(data);
         allFetchedResult.push(data);
       }  
       const charecterDatas = await Promise.all(allFetchedResult)
       console.log(charecterDatas);
-      console.log("hi");
+      //console.log("hi");
       return setCharecterURLResult(charecterDatas)  
     }
   }

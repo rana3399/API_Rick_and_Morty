@@ -22,6 +22,8 @@ export default function Main() {
 
     }, []);
 
+    //
+
 
   const fetchEachEpisode =(id)=>{   // 
     const fetchEachEpisodeResult = episodes.results.filter((episode)=>{
@@ -32,7 +34,6 @@ export default function Main() {
           const result = fetch(episodeURL)
             .then((res)=> res.json())
             .then((data)=>{
-                //console.log(data);
                 return setEachEpisodeInfo(data);  
             })
             return result;
@@ -46,16 +47,28 @@ export default function Main() {
 
   const pagination =()=>{
       if(episodes){
-   
-        const URL = episodes.info.next 
-        ? episodes.info.next 
-        : "https://rickandmortyapi.com/api/episode";
-        
-        fetch(URL)
-        .then((res)=> res.json())
-        .then((data)=>{
-          return setEpisodes(data);
-        })
+        //console.log(episodes.results.length);
+        let pageNum = 1;
+        let pageSize = 10;
+
+        if(pageNum < (episodes.results.length / pageSize)){
+
+          const myUrl = `https://rickandmortyapi.com/api/episode?page=${pageNum}`
+          fetch(myUrl)
+          .then((res)=> res.json())
+          .then((data)=>{
+            return setEpisodes(data);
+          })
+  
+        }else{
+
+          const URL = episodes.info.next
+          fetch(URL)
+          .then((res)=> res.json())
+          .then((data)=>{
+            return setEpisodes(data);
+          })
+        }
       }
   }
 
