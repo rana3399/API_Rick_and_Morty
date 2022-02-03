@@ -24,7 +24,8 @@ export default function Charecters({charecterURLResult}) {
   }
 console.log(locationResult);
    return (
-    <div className='my-card'>
+    <div className='d-flex m-2 justify-content-center' 
+    style={{width: "100%",  alignItems: "center" , flexWrap: "wrap"}}>
        { 
          charecterURLResult && (
           charecterURLResult.map((charResult , index)=>{           

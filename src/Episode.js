@@ -28,14 +28,14 @@ function Episode( {eachEpisodeInfo} ) {
 
   
   return (
-    <div className='w-200 border border-primary '>
+    <div className='border border-primary my-5 mx-auto'>
 
-      <h2 className='d-flex m-2 justify-content-center'>Episode - {eachEpisodeInfo.id}</h2>
+      <h2 className='d-flex m-2 justify-content-center'> Episode - {eachEpisodeInfo.id}</h2>
                   
       <ul className="list-unstyled d-flex m-2 justify-content-center">
-        <li className="m-2">{eachEpisodeInfo.name}</li>
-        <li className="m-2">{eachEpisodeInfo.air_date}</li>
-        <li className="m-2">{eachEpisodeInfo.episode}</li>
+        <li className="m-2"><h6>{eachEpisodeInfo.name}</h6></li>
+        <li className="m-2"><h6>{eachEpisodeInfo.air_date}</h6></li>
+        <li className="m-2"><h6>{eachEpisodeInfo.episode}</h6></li>
 
       </ul>
 

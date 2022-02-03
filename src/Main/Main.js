@@ -1,15 +1,12 @@
 import {React, useEffect, useState} from 'react';
 
-import Navbar from "./Navbar";
-import Episode from './Episode';
-import Charecters from "./Charecters";
+import Navbar from "../Navbar";
+import Episode from '../Episode';
+import Charecters from "../Charecters";
 
 import "./main.css";
-import "./header.css";
-
 
 export default function Main() {
-
   const [episodes, setEpisodes] = useState("");
   const [eachEpisodeInfo, setEachEpisodeInfo] = useState("");
 
