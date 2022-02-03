@@ -5,36 +5,32 @@ import Location from './Location';
 
 export default function Charecters({charecterURLResult}) {
 
-  const [locationResult, setLocationResult] = useState()
+  const [locationResult, setLocationResult] = useState();
+  const [editIndex, setEditIndex]= useState(null);
 
   const fetchLocationResult =(id)=>{
+    setEditIndex(editIndex => editIndex === id ? null : id)
+
     const findCharecter = charecterURLResult.filter((char) => {
       return char.id === id
     });
-
-    console.log(findCharecter);
 
     const locationURL = findCharecter[0].location.url;
     fetch(locationURL)
     .then((res)=> res.json())
     .then((data) =>{
-      console.log(data);
       return setLocationResult(data);
-    }) 
+    })  
   }
-
-
-  console.log(locationResult);
 
    return (
     <div className='my-card'>
        { 
          charecterURLResult && (
-          charecterURLResult.map((charResult ,index)=>{
-            
+          charecterURLResult.map((charResult , index)=>{           
             return (
             <>
-              <Card className='m-2 p-2 text-center' style={{ width: '15rem', maxHeight: "420px" }}>
+              <Card className='m-2 p-2 text-center' style={{ width: '20rem', maxHeight: "420px" }}>
                 <Card.Img 
                 variant="top" 
                 style={{width: "100%", height: "120px"}} 
@@ -50,15 +46,15 @@ export default function Charecters({charecterURLResult}) {
                     <Card.Text className='mx-2'>
                     {charResult.species}
                     </Card.Text>
-                    <Card.Text className='mx-2'>
+                    <Card.Text className='mx-5'>
                     {charResult.gender}
                     </Card.Text>
+
                   </Card.Body>
-              
-                  <Button onClick={()=>{fetchLocationResult(charResult.id)}} variant="primary">Show Location info</Button>
+                   <Button onClick={()=>{fetchLocationResult(charResult.id)}} variant="primary">Show Location info</Button> 
                 </Card.Body>
                 
-              {locationResult && (              
+              {locationResult && editIndex === charResult.id && (              
                 <Location locationResult={locationResult} />
                 )}
 
@@ -66,8 +62,6 @@ export default function Charecters({charecterURLResult}) {
             </>
               )
           }
-
-          
           )
          )
        }
