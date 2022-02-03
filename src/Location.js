@@ -6,8 +6,10 @@ export default function Location({ locationResult }) {
     <>  
         <div>
           <ul>
-            <li>{locationResult.name} </li>
-            <li>{locationResult.dimension}</li>
+            <li>Name: {locationResult.name} </li>
+            <li>Type: {locationResult.type}</li>
+            <li>Dimension: {locationResult.dimension}</li>
+            <li>Total residents: {locationResult.residents.length}</li>
           </ul>
         </div>
     </>

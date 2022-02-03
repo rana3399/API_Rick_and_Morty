@@ -22,7 +22,7 @@ export default function Charecters({charecterURLResult}) {
       return setLocationResult(data);
     })  
   }
-
+console.log(locationResult);
    return (
     <div className='my-card'>
        { 
@@ -30,7 +30,7 @@ export default function Charecters({charecterURLResult}) {
           charecterURLResult.map((charResult , index)=>{           
             return (
             <>
-              <Card className='m-2 p-2 text-center' style={{ width: '20rem', maxHeight: "420px" }}>
+              <Card className='m-2 p-2 text-center' style={{ width: '20rem' }}>
                 <Card.Img 
                 variant="top" 
                 style={{width: "100%", height: "120px"}} 
