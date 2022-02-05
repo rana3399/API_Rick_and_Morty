@@ -1,28 +1,19 @@
 import { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/esm/Button';
 
-export default function Navbar({episodes, pagination, fetchEachEpisode}) {
+export default function Navbar({episodes, loading, fetchEachEpisode}) {
 
-  const [episodeLimit, setEpisodeLimit] = useState("");
+  console.log(episodes);
 
-  useEffect(() => {
-    if(episodes){
-      console.log(episodes);
-      const size = 10;
-      const limitResult = episodes.results.slice(0, size);
-      return setEpisodeLimit(limitResult);
-    }
-    
-  }, [episodes]);
-  
-
-  console.log(episodeLimit);
+  // const pagination =()=>{
+  //  
+  // }
 
   return(
   <div>  
       <div className="button-container">
-        {episodeLimit && (            
-          episodeLimit.map((episode, index)=>{
+        {episodes && (            
+          episodes.map((episode, index)=>{
             return (
               <>
               <Button
@@ -40,7 +31,7 @@ export default function Navbar({episodes, pagination, fetchEachEpisode}) {
         }
         
           <div>
-            <Button onClick={pagination} >Next page</Button>
+            <Button >Next page</Button>
           </div>         
       </div>
   </div>
