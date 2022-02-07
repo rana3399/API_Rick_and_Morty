@@ -31,19 +31,20 @@ export default function Main() {
     const indexOfFirstEpisode = indexOfLastEpisode - episodesPerPage; // 10 - 10 = 0
     const currentEpisodes = episodes.slice(indexOfFirstEpisode, indexOfLastEpisode); //splice(0, 10)
 
-  const fetchEachEpisode =(id)=>{ 
-    const fetchEachEpisodeResult = episodes.results.filter((episode)=>{
 
+    const secondLotOfEpisodes = episodes.slice(10, 20);
+ 
+    
+    
+
+  const fetchEachEpisode =(id)=>{ 
+    const fetchEachEpisodeResult = episodes.filter((episode)=>{  // filter expects a RETURN? 
       if(episode.id === id){
-          const episodeURL = episode.url;   
-          const result = fetch(episodeURL)
-            .then((res)=> res.json())
-            .then((data)=>{
-                return setEachEpisodeInfo(data);  
-            })
-            return result;
-        }else{
-          return null
+      fetch(episode.url)
+        .then((res)=> res.json())
+        .then((data)=>{
+          return setEachEpisodeInfo(data);
+        })
       }
     })    
     return fetchEachEpisodeResult;
@@ -57,6 +58,7 @@ export default function Main() {
             episodes={currentEpisodes}
             loading={loading}
             fetchEachEpisode={fetchEachEpisode}
+            secondLotOfEpisodes={secondLotOfEpisodes}
           />
         </div>
         <div className="col-lg-10 col-sm-12 border border-dark">
