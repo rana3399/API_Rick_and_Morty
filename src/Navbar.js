@@ -2,19 +2,42 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/esm/Button';
 
-export default function Navbar({episodes, loading, fetchEachEpisode, secondLotOfEpisodes}) {
+export default function Navbar({episodes, fetchEachEpisode}) {
 
-  const [secondtLots, setSecondLots] = useState([]);
+  const [episodesObj, setEpisodesObj] = useState(episodes);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [episodesPerPage, setEpisodesPerPage] = useState(10);
+
+  //console.log(episodesObj);
+  //console.log(episodes);
+
+  const maxIndex = episodes.length - 1
+  console.log(maxIndex); // max index = 19
+
+   //GET CURRENT EPISODES
+   const indexOfLastEpisode = currentPage * episodesPerPage; // 2 * 10
+   const indexOfFirstEpisode = indexOfLastEpisode - episodesPerPage; // 20 - 10 = 10
+   const currentEpisodes = episodes.slice(indexOfFirstEpisode, indexOfLastEpisode); //splice(10, 20)
 
   const secondLotOfEpisodesHandeler=()=>{
-    return  setSecondLots(secondLotOfEpisodes) 
+    if(indexOfLastEpisode >= maxIndex ){
+      // console.log("reached max");  
+      // fetch("https://rickandmortyapi.com/api/episode?page=2")
+      // .then((res)=> res.json())
+      // .then((data)=>{
+      //   return setEpisodesObj(data.results);
+      // })  
+    }else{
+
+      return setCurrentPage(currentPage + 1)
+    }
   }
 
   return(
   <div>  
       <div className="button-container">
-        {secondtLots ? (
-          secondtLots.map((episode, index) =>{
+        {episodes && (
+          currentEpisodes.map((episode, index) =>{
             return (
               <>
               <Button
@@ -25,22 +48,7 @@ export default function Navbar({episodes, loading, fetchEachEpisode, secondLotOf
               </Button>
               </>
             )
-          })        
-              
-        ) : (
-          episodes.map((episode, index) =>{
-            return (
-              <>
-              <Button
-                key={index + 1}
-                className="d-block m-5"
-                onClick={()=>{fetchEachEpisode(episode.id)}}
-                >Episode {episode.id}
-              </Button>
-              </>
-            )
-          })        
-              
+          })                   
         )
         }      
           <div>
@@ -50,3 +58,5 @@ export default function Navbar({episodes, loading, fetchEachEpisode, secondLotOf
   </div>
   );
 }
+
+
