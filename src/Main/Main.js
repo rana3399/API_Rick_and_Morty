@@ -6,7 +6,8 @@ import Charecters from "../Charecters";
 import "./main.css";
 
 export default function Main() {
-  const [episodes, setEpisodes] = useState("");
+  const [episodes, setEpisodes] = useState([]);
+  const [info, setInfo] = useState(null);
 
   
   const [eachEpisodeInfo, setEachEpisodeInfo] = useState("");
@@ -18,11 +19,29 @@ export default function Main() {
       .then((data)=>{
         console.log(data.results);
         setEpisodes(data.results);
+        setInfo(data.info)
       });   
     }
     fetchEpisodes()
   }, []);
 
+  const fetchNextPage = ()=>{
+    fetch(info.next)
+    .then(res => res.json())
+    .then((data) =>{
+      setEpisodes(data.results);
+      setInfo(data.info)
+    })
+  }
+
+  const prevLotOrPage = ()=>{
+    fetch(info.prev)
+    .then(res => res.json())
+    .then((data) =>{
+      setEpisodes(data.results);
+      setInfo(data.info)
+    })
+  }
 
   const fetchEachEpisode =(id)=>{ 
     const fetchEachEpisodeResult = episodes.filter((episode)=>{  // filter expects a RETURN? 
@@ -43,6 +62,9 @@ export default function Main() {
         <div className="col-lg-2 col-sm-12 border border-dark">
           <Navbar 
             episodes={episodes}
+            info={info}
+            fetchNextPage={fetchNextPage}
+            prevLotOrPage ={prevLotOrPage}
             fetchEachEpisode={fetchEachEpisode}
           />
         </div>

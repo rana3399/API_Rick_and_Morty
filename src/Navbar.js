@@ -2,34 +2,35 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/esm/Button';
 
-export default function Navbar({episodes, fetchEachEpisode}) {
+export default function Navbar({episodes, fetchNextPage , prevLotOrPage,  fetchEachEpisode}) {
 
-  const [episodesObj, setEpisodesObj] = useState(episodes);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [episodesPerPage, setEpisodesPerPage] = useState(10);
-
-  //console.log(episodesObj);
-  //console.log(episodes);
+  const [currentLot, setCurrentLot] = useState(1);
+  
+  const episodesPerLot = 10;
 
   const maxIndex = episodes.length - 1
   console.log(maxIndex); // max index = 19
 
    //GET CURRENT EPISODES
-   const indexOfLastEpisode = currentPage * episodesPerPage; // 2 * 10
-   const indexOfFirstEpisode = indexOfLastEpisode - episodesPerPage; // 20 - 10 = 10
-   const currentEpisodes = episodes.slice(indexOfFirstEpisode, indexOfLastEpisode); //splice(10, 20)
+   const indexOfLastEpisode = currentLot * episodesPerLot; // 2 * 10
+   const indexOfFirstEpisode = indexOfLastEpisode - episodesPerLot; // 10 - 10 = 0
+   const currentEpisodes = episodes.slice(indexOfFirstEpisode, indexOfLastEpisode); //splice(0, 10) || (10, 20)
 
-  const secondLotOfEpisodesHandeler=()=>{
+  const secondLotOrNextPagesHandeler=()=>{
     if(indexOfLastEpisode >= maxIndex ){
-      // console.log("reached max");  
-      // fetch("https://rickandmortyapi.com/api/episode?page=2")
-      // .then((res)=> res.json())
-      // .then((data)=>{
-      //   return setEpisodesObj(data.results);
-      // })  
+      console.log("next page loading");
+      fetchNextPage()
+      setCurrentLot(1)   
     }else{
+      return setCurrentLot(currentLot + 1)
+    }
+  }
 
-      return setCurrentPage(currentPage + 1)
+  const prevLotOrPageHandeler = ()=>{
+    //console.log("prev lot or page called");
+    if(currentLot >= 2){
+      prevLotOrPage()
+      setCurrentLot(currentLot - 1) 
     }
   }
 
@@ -52,8 +53,13 @@ export default function Navbar({episodes, fetchEachEpisode}) {
         )
         }      
           <div>
-            <Button onClick={secondLotOfEpisodesHandeler} >Next page</Button>
-          </div>         
+            <Button onClick={secondLotOrNextPagesHandeler} >Next page</Button>
+          </div>  
+
+          <div className='m-2'>
+            <Button onClick = {prevLotOrPageHandeler}> Previous Lot/ page</Button>
+          </div>  
+    
       </div>
   </div>
   );
