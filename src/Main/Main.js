@@ -6,8 +6,8 @@ import Charecters from "../Charecters";
 import "./main.css";
 
 export default function Main() {
-  const [episodes, setEpisodes] = useState("");
-
+  const [episodes, setEpisodes] = useState([]);
+  const [ info, setInfo ] = useState(null)
   
   const [eachEpisodeInfo, setEachEpisodeInfo] = useState("");
 
@@ -18,11 +18,21 @@ export default function Main() {
       .then((data)=>{
         console.log(data.results);
         setEpisodes(data.results);
+        setInfo(data.info)
       });   
     }
     fetchEpisodes()
   }, []);
 
+  const fetchNextPage = () => {
+    // what to do when there are no more next pages. EXERCISE.
+    fetch(info.next)
+    .then((res)=> res.json())
+    .then((data)=> {
+      setEpisodes(data.results);
+      setInfo(data.info);
+    })
+  }
 
   const fetchEachEpisode =(id)=>{ 
     const fetchEachEpisodeResult = episodes.filter((episode)=>{  // filter expects a RETURN? 
@@ -44,6 +54,7 @@ export default function Main() {
           <Navbar 
             episodes={episodes}
             fetchEachEpisode={fetchEachEpisode}
+            fetchNextPage={fetchNextPage}
           />
         </div>
         <div className="col-lg-10 col-sm-12 border border-dark">

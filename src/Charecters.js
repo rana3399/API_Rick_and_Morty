@@ -69,4 +69,3 @@ console.log(locationResult);
     </div>
    )
 }
-
